@@ -18,6 +18,9 @@ export default function Navbar() {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/api/auth/login">Login</Link>
                             </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/api/auth/register">Register</Link>
+                            </li>
                         </ul>
                     </div>
                 </div>
