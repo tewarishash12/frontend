@@ -90,13 +90,13 @@ export default function Home() {
                                     <hr />
                                     {foodList !== [] ?
                                         foodList
-                                            .filter((list) => (list.CategoryName === data.CategoryName) && (list.name.toLowerCase().includes(search.toLowerCase()))).map((item) => {
+                                            .filter((list) => (list.CategoryName === data.CategoryName) && (list.name.toLowerCase().includes(search.toLowerCase())))
+                                            .map((item) => {
                                                 return (
                                                     <div key={item._id} className='col-12 col-md-6 col-lg-4 col-xl-3'>
                                                         <Card
-                                                            foodName={item.name}
-                                                            options={item.options[0]}
-                                                            imgSrc={item.img}></Card>
+                                                        foodItems={item}
+                                                        options={item.options[0]}></Card>
                                                     </div>
                                                 );
                                             })
