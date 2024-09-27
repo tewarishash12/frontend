@@ -1,15 +1,16 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import pannerTikka from "../assets/card/panner-tikka.jpeg"
+import React from 'react';
 
-export default function Card() {
+export default function Card(props) {
+
+    let options = props.options;
+    let priceOptions = Object.keys(options);
+
     return (
         <div>
-            <div className="card mt-3" style={{ "width": "18rem", "maxHeight": "400px",}}>
-                <img src={pannerTikka} style={{objectFit:"cover", height:"180px", width:"100%"}} className="card-img-top" alt="..." />
+            <div className="card mt-3" style={{ "width": "18rem", "maxHeight": "400px"}}>
+                <img src={props.imgSrc} style={{objectFit:"cover", height:"180px", width:"100%"}} className="card-img-top" alt="..." />
                 <div className="card-body">
-                    <h5 className="card-title">Panner Tikka</h5>
-                    <p className="card-text">A tasty delicacy especially for the vegetarians.</p>
+                    <h5 className="card-title">{props.foodName}</h5>
                     <div className='container w-100'>
                         <select className='m-2 h-100 bg-info rounded' name="" id="">
                             {Array.from(Array(6), (e, i) => {
@@ -20,14 +21,15 @@ export default function Card() {
                         </select>
 
                         <select className='m-2 h-100 bg-info rounded' name="" id="">
-                            <option value="half"> Half </option>
-                            <option value="full"> Full </option>
+                            {priceOptions.map((opt) =>{
+                                return (<option key={opt} value={opt}>{opt}</option>)
+                            })}
+                            
                         </select>
                         <div className='d-inline h-100 fs-5'>
                             Total Price
                         </div>
                     </div>
-                    <Link to="/" className="btn btn-primary">Go somewhere</Link>
                 </div>
             </div>
         </div>
