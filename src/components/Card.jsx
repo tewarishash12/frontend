@@ -13,16 +13,35 @@ export default function Card(props) {
     const [size, setSize] = useState("");
 
     const handleAddCart = async () => {
+
+        let food = [];
+        for (let item of data) {
+            if (item.id === props.foodItems._id) {
+                food = item;
+                break;
+            }
+        }
+
+        if (food !== []) {
+            if (food.size === size) {
+                await dispatch({ type: "Update", id: props.foodItems._id, price: finalPrice, quan: quan })
+                return;
+            }
+            else if (food.size !== size) {
+                await dispatch({ type: "Add", id: props.foodItems._id, name: props.foodItems.name, price: finalPrice, quan: quan, size: size })
+                return
+            }
+            return;
+        }
         await dispatch({ type: "Add", id: props.foodItems._id, name: props.foodItems.name, price: finalPrice, quan: quan, size: size })
-        console.log(data);
     }
 
     let finalPrice = quan * parseInt(options[size]);
-    
-    useEffect(()=>{
+
+    useEffect(() => {
         setSize(priceRef.current.value);
     })
-    
+
     return (
         <div>
             <div className="card mt-3" style={{ "width": "18rem", "maxHeight": "400px" }}>
