@@ -6,13 +6,34 @@ import { FaTrash } from 'react-icons/fa';
 export default function Cart() {
     let data = UseCart();
     let dispatch = DispatchCart();
+    const handleCheckout = async () => {
+        try {
+            let userEmail = localStorage.getItem("userEmail");
+            let res = await fetch(`http://localhost:5000/api/orders/orderData`, {
+                method:"POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:JSON.stringify({
+                    order_data: data,
+                    email:userEmail,
+                    order_date:new Date().toDateString()
+                })
+            })
+            console.log(res.status);
+            if(res.status===200)
+                dispatch({type:"Drop"})
+        } catch (err) {
+            console.log("Server Error", err.message);
+        }
+    }
 
     let totalPrice = data.reduce((total, food) => total + food.price, 0)
     return (
         <>
             {data.length === 0 ?
                 <div>
-                    <div className="m-5 w-100 text-center fs-3" style={{overflowY:"hidden"}}>The cart is empty!</div>
+                    <div className="m-5 w-100 text-center fs-3" style={{ overflowY: "hidden" }}>The cart is empty!</div>
                 </div> :
                 <div>
                     <div className='container m-auto mt-5 table-responsive table-responsive-sm table-responsive-md'>
@@ -43,7 +64,7 @@ export default function Cart() {
                             </table>
                             <div>
                                 <h1 className='fs-2'>Total Price: ₹{totalPrice}/-</h1>
-                                <button className='btn bg-info mt-5'>Checkout</button>
+                                <button className='btn bg-info mt-5' onClick={handleCheckout}>Checkout</button>
                             </div>
                         </div>
                     </div>
