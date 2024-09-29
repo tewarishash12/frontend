@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 export default function Register() {
+    const navigate = useNavigate();
 
     const [credentials, setCredentials] = useState({username:"",email:"",password:"",location:""})
 
@@ -20,6 +21,8 @@ export default function Register() {
 
         if(!json.success)
             alert("Enter valid credentials");
+        else
+            navigate('/api/auth/login');
     }
 
     const change = (e) =>{
