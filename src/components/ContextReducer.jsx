@@ -18,6 +18,9 @@ const reducer = (state,action) =>{
                     list[index] = {...food, quan: parseInt(action.quan)+parseInt(food.quan), price:action.price+food.price}
             })
             return list;    
+        case "Drop":
+            let latestArray = []
+            return latestArray;
         default:
             console.log("Error in reducer")
     }
