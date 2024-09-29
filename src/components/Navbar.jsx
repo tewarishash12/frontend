@@ -13,6 +13,7 @@ export default function Navbar() {
     const navigate = useNavigate();
     const handleLogout = async() =>{
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userEmail");
         navigate("/api/auth/login");
     }
 
