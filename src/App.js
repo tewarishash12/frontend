@@ -11,20 +11,21 @@ import { CartProvider } from './components/ContextReducer.jsx';
 
 function App() {
   const email = localStorage.getItem("authToken");
+  const check = !!email;
   return (
     <CartProvider>
       <Router>
         <div>
           <Routes>
-            {email ? (
+            {check ? (
               <>
                 <Route path='/' element={<Home />} />
                 <Route path='/api/orders/orderhistory' element={<MyOrders />} />
                 <Route path='*' element={<Navigate to="/" />} />
               </>
             )
-            : (
-              <>
+              : (
+                <>
                   <Route path='/' element={<Home />} />
                   <Route path='/api/auth/login' element={<Login />} />
                   <Route path='/api/auth/register' element={<Register />} />
