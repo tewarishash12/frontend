@@ -16,7 +16,7 @@ export default function Home() {
     const [foodList, setFoodList] = useState([]);
 
     const loadContent = async () => {
-        let res = await fetch(`http://localhost:5000/api/content/food`, {
+        let res = await fetch(`https://food-delivery-app-backend-85ht.onrender.com/api/content/food`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

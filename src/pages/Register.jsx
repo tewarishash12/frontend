@@ -8,7 +8,7 @@ export default function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault(); // synthetic event
-        const res = await fetch(`http://localhost:5000/api/auth/register`, {
+        const res = await fetch(`https://food-delivery-app-backend-85ht.onrender.com/api/auth/register`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

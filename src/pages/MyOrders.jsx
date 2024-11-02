@@ -8,7 +8,7 @@ export default function MyOrders() {
     let [orderData, setOrderdata] = useState("");
 
     const orderHistory = async () => {
-        await fetch(`http://localhost:5000/api/orders/orderhistory`, {
+        await fetch(`https://food-delivery-app-backend-85ht.onrender.com/api/orders/orderhistory`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

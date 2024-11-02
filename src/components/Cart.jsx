@@ -9,7 +9,7 @@ export default function Cart() {
     const handleCheckout = async () => {
         try {
             let userEmail = localStorage.getItem("userEmail");
-            let res = await fetch(`http://localhost:5000/api/orders/orderData`, {
+            let res = await fetch(`https://food-delivery-app-backend-85ht.onrender.com/api/orders/orderData`, {
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json"
